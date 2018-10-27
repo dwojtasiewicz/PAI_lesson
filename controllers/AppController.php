@@ -2,6 +2,8 @@
 
 class AppController
 {
+    const UPLOAD_DIRECTORY = '/public/upload/';
+
     private $request = null;
 
     public function __construct()
