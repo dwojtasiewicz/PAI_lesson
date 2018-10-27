@@ -1,5 +1,7 @@
 <?php
 
+require_once('controllers/DefaultController.php');
+
 class Routing
 {
     public $routes = [];

@@ -19,8 +19,21 @@ class AppController
         return $this->request === 'post';
     }
 
-    public function render(string $fileName = null)
+    public function render(string $fileName = null, $variables = [])
     {
-        $view = $fileName ? dirname(__DIR__).'\views\\'.get_class($this).'\\'.$fileName.'.php' : '';
+        $view = $fileName ? dirname(__DIR__).'/views/'.get_class($this).'/'.$fileName.'.php' : '';
+
+        $output = 'There isn\'t such file to open';
+
+            if (file_exists($view)) {
+
+                extract($variables);
+
+                ob_start();
+                include $view;
+                $output = ob_get_clean();
+            }
+
+        print $output;
     }
 }

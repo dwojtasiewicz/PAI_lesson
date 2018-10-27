@@ -11,8 +11,15 @@ class DefaultController extends AppController
         parent::__construct();
     }
 
+    public function index()
+    {
+        $text = 'Hello there 👋';
+
+        $this->render('index', ['text' => $text]);
+    }
+
     public function login()
     {
-        //renderowanie szablonu z katalogu views
+        $this->render('login');
     }
 }
