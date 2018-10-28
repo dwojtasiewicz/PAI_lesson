@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php include(dirname(__DIR__).'/head.html') ?>
+<?php include(dirname(__DIR__).'/head.html'); ?>
 
 <body>
 
@@ -10,5 +10,10 @@
     <?= $text ?>
 </p>
 
+
+<?php
+if(isset($_SESSION))
+print_r($_SESSION);
+?>
 </body>
 </html>
