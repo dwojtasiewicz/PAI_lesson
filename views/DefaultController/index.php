@@ -12,8 +12,9 @@
 
 
 <?php
-if(isset($_SESSION))
-print_r($_SESSION);
+if(isset($_SESSION) && !empty($_SESSION)) {
+    print_r($_SESSION);
+}
 ?>
 </body>
 </html>

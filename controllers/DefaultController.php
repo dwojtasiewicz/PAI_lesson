@@ -35,7 +35,6 @@ class DefaultController extends AppController
             //we'll replace this with a query to the database
             foreach ($users as $u) {
                 if ($u->getEmail() === $_POST['email']) {
-                    var_dump($u->getEmail(). ' to: '.$_POST['email']);
                     $user = $u;
                     break;
                 }
