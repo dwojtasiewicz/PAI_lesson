@@ -1,8 +1,9 @@
 <?php
 
-require_once("AppController.php");
+require_once "AppController.php";
 
-require_once(__DIR__.'/../model/User.php');
+require_once __DIR__.'/../model/User.php';
+require_once __DIR__.'/../model/UserMapper.php';
 
 
 class DefaultController extends AppController
@@ -22,29 +23,19 @@ class DefaultController extends AppController
 
     public function login()
     {
-        //sample users list untill we connect to a database
-        $users = [
-            new User('Adrian', 'W','adrian.widlak@pk.edu.pl', 'test'),
-            new User('Krzysztof', 'K','krzysztof.krawczyk@pk.edu.pl', 'parostatek'),
-
-        ];
+        $mapper = new UserMapper();
 
         $user = null;
 
         if ($this->isPost()) {
-            //we'll replace this with a query to the database
-            foreach ($users as $u) {
-                if ($u->getEmail() === $_POST['email']) {
-                    $user = $u;
-                    break;
-                }
-            }
+
+            $user = $mapper->getUser($_POST['email']);
 
             if(!$user) {
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
 
-            if ($user->getPassword() !== md5($_POST['password'])) {
+            if ($user->getPassword() !== $_POST['password']) {
                 return $this->render('login', ['message' => ['Wrong password']]);
             } else {
                 $_SESSION["id"] = $user->getEmail();
