@@ -13,11 +13,13 @@ class AdminController extends AppController
 
     public function index(): void
     {
-        $user = new UserMapper();
-        $this->render('index', ['user' => $user->getUser($_SESSION['id'])]);
+        if ($_SESSION['role'] == 'admin') {
+            $user = new UserMapper();
+            $this->render('index', ['user' => $user->getUser($_SESSION['id'])]);
+        }
     }
 
-    public function users(): void
+    public function getUsers(): void
     {
         $user = new UserMapper();
 
@@ -27,7 +29,7 @@ class AdminController extends AppController
         echo $user->getUsers() ? json_encode($user->getUsers()) : '';
     }
 
-    public function userDelete(): void
+    public function deleteUser(): void
     {
         if (!isset($_POST['id'])) {
             http_response_code(404);

@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 
 function getUsers() {
-    const apiUrl = "http://localhost:8002";
+    const apiUrl = "http://localhost/pai";
     const $list = $('.users-list');
 
     $.ajax({
@@ -19,12 +19,11 @@ function getUsers() {
             res.forEach(el => {
                 $list.append(`<tr>
                     <td>${el.name}</td>
-                    <td>${el.surname}</td>
                     <td>${el.email}</td>
                     <td>${el.role}</td>
                     <td>
                     <button class="btn btn-danger" type="button" onclick="deleteUser(${el.id})">
-                        <i class="material-icons">delete_forever</i>
+                        <i class="material-icons">clear</i>
                     </button>
                     </td>
                     </tr>`);
@@ -37,7 +36,7 @@ function deleteUser(id) {
         return;
     }
 
-    const apiUrl = "http://localhost:8002";
+    const apiUrl = "http://localhost/pai";
 
     $.ajax({
         url : apiUrl + '/?page=admin_delete_user',

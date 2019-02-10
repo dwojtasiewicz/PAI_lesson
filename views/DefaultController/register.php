@@ -12,13 +12,15 @@
                    <div class="col">
                 <h1 class="panel-header">JOIN</h1>
                 <hr>
-                <?php if(isset($message)): ?>
-                    <?php foreach($message as $item): ?>
-                        <div><?= $item ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+
 
                 <form id="Register" action="?page=register" method="POST">
+                    <?php if(isset($message)): ?>
+                        <?php foreach($message as $item): ?>
+                            <div><?= $item ?></div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
                     <div class=" row">
                         <label for="inputName" class="col-sm-1 col-form-label" >
                             <i class="material-icons md-48">accessibility</i>
@@ -45,7 +47,17 @@
                             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="password" type="password" required/>
                         </div>
                     </div>
-                    <input type="submit" value="Sign out" class="btn btn-primary btn-lg float-right" />
+
+                    <div class="row">
+                        <label for="inputPassword" class="col-sm-1 col-form-label">
+                            <i class="material-icons md-48">person</i>
+                        </label>
+                        <div class="col-sm-11">
+                            <input type="password" name="password_confirmation" class="form-control" id="inputPassword" placeholder="password confirmation" type="password" required/>
+                        </div>
+                   </div>
+
+                    <input type="submit" value="Sign in" class="btn btn-primary btn-lg float-right" />
                 </form>
             </div>
 

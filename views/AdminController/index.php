@@ -2,9 +2,10 @@
 <html>
 
 <?php include(dirname(__DIR__).'/head.html'); ?>
-<?php include(dirname(__DIR__).'/navbar.html'); ?>
 
 <body>
+<?php include(dirname(__DIR__).'/navbar.html'); ?>
+
 <div class="container">
     <div class="row">
         <h1 class="col-12 pl-0">ADMIN PANEL</h1>
@@ -14,7 +15,6 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Surname</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Action</th>
@@ -23,7 +23,6 @@
             <tbody>
             <tr>
                 <td><?= $user->getName(); ?></td>
-                <td><?= $user->getSurname(); ?></td>
                 <td><?= $user->getEmail(); ?></td>
                 <td><?= $user->getRole(); ?></td>
                 <td>-</td>

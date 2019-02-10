@@ -38,6 +38,7 @@
                     </div>
                 </div>
                 <input type="submit" value="Sign in" class="btn btn-primary btn-lg float-right" />
+                <a class="link" href="?page=register">Sign out</a>
             </form>
         </div>
     </div>

@@ -72,11 +72,12 @@ class UserMapper
             die();
         }
     }
+
     public function getUsername(string $username)
     {
         try {
             $pdo = $this->database->getConnection();
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE name = :name");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
 

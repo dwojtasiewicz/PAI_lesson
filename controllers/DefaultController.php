@@ -63,13 +63,15 @@ class DefaultController extends AppController
                 return $this->render('register', ['message' => ['This email is already registered']]);
             if ($_POST['password'] != $_POST['password_confirmation'])
                 return $this->render('register', ['message' => ['Wrong password']]);
-            if ($userMapper->getUsername($_POST['username']))
+            if ($userMapper->getUsername($_POST['name']))
                 return $this->render('register', ['message' => ['This username is already registered']]);
             $userMapper->setUser($_POST['name'], $_POST['email'], md5($_POST['password']));
-            $url = "http://$_SERVER[HTTP_HOST]/";
-            echo "<script> alert('Zarejestrowano!');
-            window.location.href='{$url}?page=index'; </script>";
+
+
+            $url = "http://$_SERVER[HTTP_HOST]/pai/";
+            header("Location: {$url}?page=login");
             exit();
+
         }
         $this->render('register');
     }
