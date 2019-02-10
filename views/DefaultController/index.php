@@ -20,14 +20,7 @@
         }
         ?>
 
-        <div class="position">
-            <div id="turquise" class="static">Static</div>
-            <div id="blue" class="static">Static</div>
-            <div id="violet" class="relative">Relative</div>
 
-            <div id="red" class="fixed">Fixed</div>
-            <div id="yellow">Default</div>
-        </div>
     </div>
 </div>
 

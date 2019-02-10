@@ -1,12 +1,46 @@
-<div class="absolute">
-    <div class="container">
-        <div class="row">
-            <ul>
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><i class="material-icons md-48">cloud_upload</i><a href="?page=upload">Upload</a></li>
+<html>
+<head>
+
+
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <a class="navbar-brand "><img src="public/upload/truck.png" alt="logo" class="logo" width="60" height="30"></a>
+            <span class="navbar-text text-info">FoodTrucker</span>
+
+            <ul class="navbar-nav">
+                <?php if(isset($_SESSION) && !empty($_SESSION)) {?>
+                        <li class="navbar-item">
+                            <a class="nav-link" href="?page=index">Home</a></li>
+                        <li class="navbar-item">
+                            <a class="nav-link" href="?page=favorite">Favorite</a></li>
+
+                        <li class="navbar-item ">
+                            <a class="nav-link nav-danger" href="?page=upload">Add Foodtruck</a></li>
+
+                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'admin'){?>
+                        <li class="navbar-item">
+                            <a class="nav-link" href="?page=admin">Delate user</a></li>
+                    <?php } ?>
+                    <li class="navbar-item ">
+                         <a class="nav-link nav-danger" href="?page=logout">Logout</a></li>
+                    <span class="navbar-text text-info ">You are logged as :</span>
+                    <span class="navbar-text text-light"><?php echo $_SESSION['username']?></span>
+
+                <?php } else { ?>
+                    <li class="navbar-item">
+                        <a class="nav-link" href="?page=index">Home</a></li>
+                    <li class="navbar-item ">
+                        <a class="nav-link nav-danger" href="?page=login">Login</a></li>
+                <?php } ?>
+
+
+
             </ul>
-        </div>
-    </div>
-</div>
+
+        </nav>
+
+
+</head>
+</html>
+
+

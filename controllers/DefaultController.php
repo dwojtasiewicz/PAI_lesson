@@ -19,6 +19,8 @@ class DefaultController extends AppController
         $text = 'Hello there 👋';
 
         $this->render('index', ['text' => $text]);
+
+        //wyswietlanie sie strony?
     }
 
     public function login()
@@ -31,6 +33,7 @@ class DefaultController extends AppController
 
             $user = $mapper->getUser($_POST['email']);
 
+
             if(!$user) {
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
@@ -40,8 +43,10 @@ class DefaultController extends AppController
             } else {
                 $_SESSION["id"] = $user->getEmail();
                 $_SESSION["role"] = $user->getRole();
+                $_SESSION['username'] = $user->getName();
 
-                $url = "http://$_SERVER[HTTP_HOST]/";
+
+                $url = "http://$_SERVER[HTTP_HOST]/pai/";
                 header("Location: {$url}?page=index");
                 exit();
             }
@@ -49,6 +54,26 @@ class DefaultController extends AppController
 
         $this->render('login');
     }
+
+    public function register()
+    {
+        $userMapper = new UserMapper();
+        if ($this->isPost()) {
+            if ($userMapper->getUser($_POST['email']) != null)
+                return $this->render('register', ['message' => ['This email is already registered']]);
+            if ($_POST['password'] != $_POST['password_confirmation'])
+                return $this->render('register', ['message' => ['Wrong password']]);
+            if ($userMapper->getUsername($_POST['username']))
+                return $this->render('register', ['message' => ['This username is already registered']]);
+            $userMapper->setUser($_POST['name'], $_POST['email'], md5($_POST['password']));
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            echo "<script> alert('Zarejestrowano!');
+            window.location.href='{$url}?page=index'; </script>";
+            exit();
+        }
+        $this->render('register');
+    }
+
 
     public function logout()
     {

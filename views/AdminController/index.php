@@ -2,6 +2,7 @@
 <html>
 
 <?php include(dirname(__DIR__).'/head.html'); ?>
+<?php include(dirname(__DIR__).'/navbar.html'); ?>
 
 <body>
 <div class="container">

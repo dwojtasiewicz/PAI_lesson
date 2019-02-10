@@ -4,7 +4,6 @@ require_once 'controllers/DefaultController.php';
 require_once 'controllers/UploadController.php';
 require_once 'controllers/PlayerController.php';
 require_once 'controllers/AdminController.php';
-require_once 'controllers/AdminController.php';
 
 class Routing
 {
@@ -16,6 +15,10 @@ class Routing
             'index' => [
                 'controller' => 'DefaultController',
                 'action' => 'index'
+            ],
+            'register' => [
+                'controller' => 'DefaultController',
+                'action' => 'register'
             ],
             'login' => [
                 'controller' => 'DefaultController',
@@ -32,6 +35,12 @@ class Routing
             'player' => [
                 'controller' => 'PlayerController',
                 'action' => 'player'
+
+            ],
+            'favorite' => [
+                'controller' => 'PlayerController',
+                'action' => 'favorite'
+
             ],
             'admin' => [
                 'controller' => 'AdminController',

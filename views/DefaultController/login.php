@@ -5,6 +5,10 @@
 
 <body>
 
+<body>
+<center>
+    <img src="public/upload/truck.png" width="300" height="200" />
+</center>
 <div class="container">
     <div clas="row">
         <div class="col-sm-6 offset-sm-3">
@@ -41,4 +45,3 @@
 
 </body>
 </html>
-

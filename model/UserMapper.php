@@ -12,19 +12,24 @@ class UserMapper
         $this->database = new Database();
     }
 
-    public function getUser(
-        string $email
-    ):User {
+    public function getUser( string $email )
+    {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE email = :email;');
+            $pdo = $this->database->getConnection();
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new User($user['name'], $user['surname'], $user['email'], $user['password']);
+
+            if(!$user['email'])
+                return null;
+
+            return new User($user['name'], $user['email'], $user['password'], $user['role']);
         }
         catch(PDOException $e) {
-            return 'Error: ' . $e->getMessage();
+            echo 'Error: ' . $e->getMessage();
+            exit();
         }
     }
 
@@ -43,6 +48,19 @@ class UserMapper
         }
     }
 
+    public function setUser(string $name, string $email, string $password)
+    {
+        try {
+            $pdo = $this->database->getConnection();
+            $stmt = $pdo->prepare("INSERT INTO users (name,email, password, role) VALUES (?,?,?,?)");
+            $stmt->execute([$name, $email,$password,'user']);
+        }
+        catch (PDOException $e){
+            echo 'Error: ' . $e->getMessage();
+            exit();
+        }
+    }
+
     public function delete(int $id): void
     {
         try {
@@ -54,4 +72,25 @@ class UserMapper
             die();
         }
     }
+    public function getUsername(string $username)
+    {
+        try {
+            $pdo = $this->database->getConnection();
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user)
+                return true;
+            return false;
+        }
+        catch (PDOException $e){
+            echo 'Error: ' . $e->getMessage();
+            exit();
+        }
+    }
+
+
 }

@@ -25,8 +25,22 @@ class Database
         }
         catch(PDOException $e)
         {
-            return 'Connection failed: ' . $e->getMessage();
+            echo('Connection failed: ' . $e->getMessage());
+            exit();
         }
+    }
+
+    public static function getInstance()
+    {
+        if(!self::$instance)
+        {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+    public function getConnection()
+    {
+        return $this->connect();
     }
 }
 

@@ -7,7 +7,7 @@ class PlayerController extends AppController
         parent::__construct();
     }
 
-    public function player()
+    public function favorite()
     {
         $this->render('player', [ 'videos' => $this->getVideos()]);
     }
