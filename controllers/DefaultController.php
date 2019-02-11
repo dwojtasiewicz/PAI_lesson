@@ -65,7 +65,7 @@ class DefaultController extends AppController
                 return $this->render('register', ['message' => ['Wrong password']]);
             if ($userMapper->getUsername($_POST['name']))
                 return $this->render('register', ['message' => ['This username is already registered']]);
-            $userMapper->setUser($_POST['name'], $_POST['email'], md5($_POST['password']));
+            $userMapper->setUser($_POST['name'], $_POST['email'], $_POST['password']);
 
 
             $url = "http://$_SERVER[HTTP_HOST]/pai/";
@@ -81,7 +81,20 @@ class DefaultController extends AppController
     {
         session_unset();
         session_destroy();
-
         $this->render('index', ['text' => 'You have been successfully logged out!']);
+    }
+
+    public function searcher()
+    {
+        $FoodTruckmapper = new FoodTruckMapper();
+
+        if ($this->isPost()) {
+            if ($FoodTruckmapper->getFoodTruckName($_POST['text']) != null) {
+                $this->render('searcher', ['files' => $FoodTruckmapper->getFoodTruckName($_POST['text'])]);
+            } else {
+                $url = "http://$_SERVER[HTTP_HOST]/pai";
+                echo "<script> alert('Not found any bargain with that pattern'); window.location.href='{$url}?page=index'; </script>";
+            }
+        }
     }
 }

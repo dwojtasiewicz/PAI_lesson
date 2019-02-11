@@ -53,7 +53,12 @@ class Routing
             'admin_delete_user' => [
                 'controller' => 'AdminController',
                 'action' => 'deleteUser'
-            ]
+            ],
+            'searcher' => [
+            'controller' => 'DefaultController',
+            'action' => 'searcher'
+             ]
+
         ];
     }
 

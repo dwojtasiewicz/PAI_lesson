@@ -14,14 +14,22 @@ class UploadController extends AppController
 
     public function upload()
     {
+        $sender = new FoodTruckMapper();
+
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
 
+
+            if(!empty($_FILES['file']['tmp_name']) && file_exists($_FILES['file']['tmp_name'])) {
+                $sender->setBargain($_FILES['file']['name'],$_POST['title'],$_POST['price'],$_POST['description'],$_SESSION['id']);
+            }
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
             $this->message[] = 'File uploaded.';
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=index");
         }
 
         $this->render('upload', [ 'message' => $this->message]);
