@@ -9,11 +9,14 @@ function getUsers() {
 
     $.ajax({
         url : apiUrl + '/?page=admin_users',
-        dataType : 'json'
+        dataType : 'json',
+
+
     })
         .done((res) => {
 
             $list.empty();
+
             //robimy pętlę po zwróconej kolekcji
             //dołączając do tabeli kolejne wiersze
             res.forEach(el => {
@@ -27,7 +30,9 @@ function getUsers() {
                     </button>
                     </td>
                     </tr>`);
+
             })
+
         });
 }
 

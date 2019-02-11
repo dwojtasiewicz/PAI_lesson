@@ -37,7 +37,7 @@ class FoodTruckMapper extends Database
     {
         try {
             $pdo = $this->database->getConnection();
-            $stmt = $pdo->prepare("SELECT * FROM foodtruck WHERE name != :name;");
+            $stmt = $pdo->prepare("SELECT * FROM foodtruck ;");
             $stmt->execute();
 
             $f = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -27,6 +27,7 @@ class AdminController extends AppController
         http_response_code(200);
 
         echo $user->getUsers() ? json_encode($user->getUsers()) : '';
+
     }
 
     public function deleteUser(): void

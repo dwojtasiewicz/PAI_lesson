@@ -4,6 +4,8 @@ require_once "AppController.php";
 
 require_once __DIR__.'/../model/User.php';
 require_once __DIR__.'/../model/UserMapper.php';
+require_once __DIR__.'/../model/FoodTruck.php';
+require_once __DIR__.'/../model/FoodTruckMapper.php';
 
 
 class DefaultController extends AppController
@@ -86,15 +88,21 @@ class DefaultController extends AppController
 
     public function searcher()
     {
-        $FoodTruckmapper = new FoodTruckMapper();
+        $mapper = new FoodTruckMapper();
 
         if ($this->isPost()) {
-            if ($FoodTruckmapper->getFoodTruckName($_POST['text']) != null) {
-                $this->render('searcher', ['files' => $FoodTruckmapper->getFoodTruckName($_POST['text'])]);
+            if ($mapper->getFoodTruckName($_POST['text']) != null) {
+                $this->render('searcher', ['files' => $mapper->getFoodTruckName($_POST['text'])]);
             } else {
                 $url = "http://$_SERVER[HTTP_HOST]/pai";
                 echo "<script> alert('Not found any bargain with that pattern'); window.location.href='{$url}?page=index'; </script>";
             }
         }
+    }
+
+    public function getFoodTrucks()
+    {
+        $mapper = new FoodTruckMapper();
+        return $mapper->getFoodTrucks();
     }
 }

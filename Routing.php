@@ -37,9 +37,9 @@ class Routing
                 'action' => 'player'
 
             ],
-            'favorite' => [
-                'controller' => 'PlayerController',
-                'action' => 'favorite'
+            'foodtruck' => [
+                'controller' => 'DefaultController',
+                'action' => 'getFoodTrucks'
 
             ],
             'admin' => [
@@ -58,6 +58,7 @@ class Routing
             'controller' => 'DefaultController',
             'action' => 'searcher'
              ]
+
 
         ];
     }

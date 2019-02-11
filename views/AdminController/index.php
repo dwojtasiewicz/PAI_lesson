@@ -3,7 +3,6 @@
 
 <?php include(dirname(__DIR__).'/head.html'); ?>
 
-
 <body>
 <?php include(dirname(__DIR__).'/navbar.html'); ?>
 
@@ -37,5 +36,8 @@
     </div>
 </div>
 
+
+
+?>
 </body>
 </html>

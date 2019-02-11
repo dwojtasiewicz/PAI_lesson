@@ -52,7 +52,7 @@ class UserMapper extends Database
     {
         try {
             $pdo = $this->database->getConnection();
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE email != :email;");
+            $stmt = $pdo->prepare("SELECT * FROM users where name!='admin';");
             $stmt->bindParam(':email', $_SESSION['email'], PDO::PARAM_STR);
             $stmt->execute();
 

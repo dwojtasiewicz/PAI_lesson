@@ -20,7 +20,7 @@ class UploadController extends AppController
 
 
             if(!empty($_FILES['file']['tmp_name']) && file_exists($_FILES['file']['tmp_name'])) {
-                $sender->setBargain($_FILES['file']['name'],$_POST['title'],$_POST['price'],$_POST['description'],$_SESSION['id']);
+                $sender->setFoodtruck($_FILES['file']['name'],$_POST['name'],$_POST['cook_type'],$_POST['description'],$_SESSION['id']);
             }
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
