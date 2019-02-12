@@ -46,8 +46,7 @@ function searcher() {
                     <td>${el.name}</td>
                     <td>${el.cook_type}</td>
                     <td>${el.description}</td>
-                   
-
+                  
                     </tr>`);
 
             })

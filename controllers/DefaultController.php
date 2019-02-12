@@ -8,6 +8,9 @@ require_once __DIR__.'/../model/FoodTruck.php';
 require_once __DIR__.'/../model/FoodTruckMapper.php';
 
 
+
+
+
 class DefaultController extends AppController
 {
 
@@ -78,7 +81,6 @@ class DefaultController extends AppController
         $this->render('register');
     }
 
-
     public function logout()
     {
         session_unset();
@@ -86,6 +88,9 @@ class DefaultController extends AppController
         $this->render('index', ['text' => 'You have been successfully logged out!']);
     }
 
+    /**
+     *
+     */
     public function searcher()
     {
         $mapper = new FoodTruckMapper();
@@ -95,8 +100,7 @@ class DefaultController extends AppController
               header('Content-type: application/json');
                 http_response_code(200);
 
-                echo $mapper->getFoodTruckName($_POST['text']) ? json_encode($mapper->getFoodTruckName($_POST['text'])) : '';
-
+                echo  $mapper->getFoodTruckName('ziomek') ? json_encode($mapper->getFoodTruckName('ziomek')) : '';
 
         }
     }

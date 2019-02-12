@@ -13,7 +13,7 @@
                 <div class="container"  >
                     <div class="row">
 
-                        <form action="?page=searcher" method="POST">
+                        <form  method="POST">
                             <table style="float:right " class="mt-4">
                                 <tr >
                                     <td>
@@ -22,12 +22,12 @@
                                         </label>
                                     </td>
                                     <td style="width: 600px">
-                                        <div class="col-sm-12">
-                                            <input onclick="searcher()" type="text" class="form-control" id="inputSearch" name="text" placeholder="Search" required/>
+                                        <div class="col-sm-12" >
+                                            <input  type="text" class="form-control" id="inputSearch" name="text" placeholder="Search" required/>
                                         </div>
                                     </td>
                                     <td >
-                                        <input type="submit"  value="Search" on class="btn btn-dark" />
+                                        <input type="button" onclick="searcher()" value="Search" on class="btn btn-dark" />
                                     </td>
                                 </tr>
                             </table>
