@@ -20,42 +20,34 @@ class User
     {
         return $this->name;
     }
-
     public function setName($name): void
     {
         $this->name = $name;
     }
-
     public function getEmail()
     {
         return $this->email;
     }
-
     public function setEmail($email): void
     {
         $this->email = $email;
     }
-
     public function getPassword()
     {
         return $this->password;
     }
-
     public function setPassword($password): void
     {
         $this->password = md5($password);
     }
-
     public function getId()
     {
         return $this->id;
     }
-
     public function getRole()
     {
         return $this->role;
     }
-
     public function setRole(string $role): void
     {
         $this->role = $role;

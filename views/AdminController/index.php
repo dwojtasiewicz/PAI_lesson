@@ -25,6 +25,7 @@
                 <td><?= $user->getName(); ?></td>
                 <td><?= $user->getEmail(); ?></td>
                 <td><?= $user->getRole(); ?></td>
+
                 <td>-</td>
             </tr>
             </tbody>

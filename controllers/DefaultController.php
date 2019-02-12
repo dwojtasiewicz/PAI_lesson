@@ -36,7 +36,7 @@ class DefaultController extends AppController
             $user = $mapper->getUser($_POST['email']);
 
 
-            if(!$user) {
+            if (!$user) {
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
 
@@ -90,19 +90,25 @@ class DefaultController extends AppController
     {
         $mapper = new FoodTruckMapper();
 
-        if ($this->isPost()) {
-            if ($mapper->getFoodTruckName($_POST['text']) != null) {
-                $this->render('searcher', ['files' => $mapper->getFoodTruckName($_POST['text'])]);
-            } else {
-                $url = "http://$_SERVER[HTTP_HOST]/pai";
-                echo "<script> alert('Not found any bargain with that pattern'); window.location.href='{$url}?page=index'; </script>";
-            }
+        if ($this->isPost())
+        {
+              header('Content-type: application/json');
+                http_response_code(200);
+
+                echo $mapper->getFoodTruckName($_POST['text']) ? json_encode($mapper->getFoodTruckName($_POST['text'])) : '';
+
+
         }
     }
 
-    public function getFoodTrucks()
+    public function getFoodTrucks(): void
     {
         $mapper = new FoodTruckMapper();
-        return $mapper->getFoodTrucks();
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo $mapper->getFoodTrucks() ? json_encode($mapper->getFoodTrucks()) : '';
+
     }
 }

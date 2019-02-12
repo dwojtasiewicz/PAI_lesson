@@ -42,6 +42,11 @@ class Routing
                 'action' => 'getFoodTrucks'
 
             ],
+            'foodtruckname' => [
+                'controller' => 'DefaultController',
+                'action' => 'getFoodTruckName'
+
+            ],
             'admin' => [
                 'controller' => 'AdminController',
                 'action' => 'index'

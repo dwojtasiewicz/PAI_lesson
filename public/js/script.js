@@ -11,14 +11,10 @@ function getUsers() {
         url : apiUrl + '/?page=admin_users',
         dataType : 'json',
 
-
     })
         .done((res) => {
 
             $list.empty();
-
-            //robimy pętlę po zwróconej kolekcji
-            //dołączając do tabeli kolejne wiersze
             res.forEach(el => {
                 $list.append(`<tr>
                     <td>${el.name}</td>

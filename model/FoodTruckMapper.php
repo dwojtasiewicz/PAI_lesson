@@ -19,15 +19,14 @@ class FoodTruckMapper extends Database
     {
         try {
             $pdo = $this->database->getConnection();
-            $stmt = $pdo->prepare("SELECT foodtruck.id, foodtruck.name, foodtruck.cook_type, foodtruck.image, foodtruck.description, users.name
-                                      FROM foodtruck, users where foodtruck.id_user =users.id and foodtruck.name LIKE '%{$pattern}%'");
+            $stmt = $pdo->prepare("SELECT * FROM foodtruck WHERE  foodtruck.name LIKE '%{$pattern}%' ");
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            if ($stmt->rowCount()) {
-                $f = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $f;
-            }
+
+                $food = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $food;
+
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
             exit();
@@ -38,16 +37,18 @@ class FoodTruckMapper extends Database
         try {
             $pdo = $this->database->getConnection();
             $stmt = $pdo->prepare("SELECT * FROM foodtruck ;");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            $f = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $f;
+            $food = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $food;
         }
         catch (PDOException $e){
             echo 'Error: ' . $e->getMessage();
             exit();
         }
     }
+
 
     public function getFoodTruck(int $id)
     {
@@ -58,8 +59,8 @@ class FoodTruckMapper extends Database
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            $bargain = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $bargain;
+            $food = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $food;
         }
         catch(PDOException $e) {
             echo 'Error: ' . $e->getMessage();
